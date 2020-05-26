@@ -1,0 +1,50 @@
+#calculul determinantului unei matrici
+import numpy
+import numpy.linalg as m
+
+# Functia de tiparire a matricei  
+def printMatrix(M, rowSize, colSize):
+    '''
+    printing the matrix in an acceptable design and format
+    
+    '''  
+    for i in range(rowSize) :  
+        for j in range(colSize) :  
+            print("%6.1f" %M[i][j], end = " ") 
+  
+        print() 
+
+if __name__ == "__main__" : 
+  
+
+    # Read size of Matrix A from user  
+    row = int(input("Enter the number of rows of the Matrix: ")) 
+    col = int(input("Enter the number of columns of the Matrix: ")) 
+  
+    A = []
+
+    # Read the elements of Matrix A from user  
+    for i in range(row):
+        b=[]
+        for j in range(col):
+            j=int(input("Enter Number in position ["+str(i)+"]["+str(j)+"]: "))
+            b.append(j)
+        A.append(b) 
+  
+    # Print the Matrix A  
+    print("The matrix is: ") 
+    print(A)
+    print("\nor more graphical:")
+    printMatrix(A, row, col)
+    
+    if row != col:
+        print("The matrix is not squared and we can't calculate the determinant.")
+    else:
+        print("\nMatrix's determinant is %.0f." %m.det(A))
+        if m.det(A) != 0:
+            print("\nMatrix's inverse is: ")
+            print(m.inv(A))
+            print("\nor more graphical:")
+            printMatrix(m.inv(A), row, col)
+        else:
+            print("The matrix is singular (det = 0) and we cannot calculate the inverse.")
